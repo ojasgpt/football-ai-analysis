@@ -37,10 +37,13 @@ if uploaded_file:
         df["hidden_value_index"] = df[norm_cols].mean(axis=1) * 100
 
         output_cols = ["hidden_value_index"]
+
+        if "user name" in df.columns:
+        output_cols.insert(0, "user name")
         if "team name" in df.columns:
-            output_cols.insert(0, "team name")
+        output_cols.insert(1, "team name")
         if "preferred position" in df.columns:
-            output_cols.insert(1, "preferred position")
+        output_cols.insert(2, "preferred position")
 
         result = df[output_cols].sort_values(by="hidden_value_index", ascending=False)
 
